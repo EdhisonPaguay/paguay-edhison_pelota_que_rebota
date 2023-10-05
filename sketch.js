@@ -7,7 +7,7 @@ function setup() {
 }
 
 function draw() {
-  background(0, 200, 150, 70);
+  background(random(0, 255), 0, 0, 40);
 
   balon1.update();
   balon1.display();
@@ -17,9 +17,10 @@ class Pelota {
   constructor() {
     this.posX = windowWidth / 2;
     this.posY = windowHeight / 2;
-    rectMode(CENTER);
-    this.diam = random(10, 50);
+    this.diam = 250;
+    // this.diam = random(10, 50);
     this.rad = this.diam / 2;
+    // this.rad = this.diam = random(100, 500);
     this.velY = 1;
     this.acel = 0.98;
     this.margen = 50;
@@ -43,7 +44,7 @@ class Pelota {
     fill(255);
     circle(this.posX, this.posY, this.diam);
 
-    fill(random(0, 200), 255, 0);
-    rect(windowWidth, windowHeight - this.margen, windowWidth, this.esp);
+    fill(50, 255, 0);
+    rect(0, windowHeight - this.margen, windowWidth, this.esp);
   }
 }
