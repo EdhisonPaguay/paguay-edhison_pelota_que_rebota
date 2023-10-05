@@ -1,47 +1,49 @@
-let posX;
-let posY;
-let vel;
-let diam;
-let rad;
-let esp;
-let margen;
-let piso;
-let acel;
+let balon1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  posX = windowWidth / 2;
-  posY = windowHeight * 0.2;
-  rectMode(CENTER);
-  diam = random(10, 50);
-  rad = diam / 2;
-  esp = 50;
-  margen = 40;
-  piso = windowHeight - margen - esp / 2;
-  vel = 0;
-  acel = 0.98;
-  //frameRate(10);
+
+  balon1 = new Pelota(100, 200);
 }
 
 function draw() {
-  background(255, 200, 150);
+  background(0, 200, 150, 70);
 
-  actualizar();
-
-  noStroke();
-  fill(255, 100, 0);
-  circle(posX, posY, 50);
-  fill(100, 50, 0);
-  rect(windowWidth / 2, windowHeight - margen, windowWidth, esp);
+  balon1.update();
+  balon1.display();
 }
 
-function actualizar() {
-  vel += acel;
-  posY += vel;
+class Pelota {
+  constructor() {
+    this.posX = windowWidth / 2;
+    this.posY = windowHeight / 2;
+    rectMode(CENTER);
+    this.diam = random(10, 50);
+    this.rad = this.diam / 2;
+    this.velY = 1;
+    this.acel = 0.98;
+    this.margen = 50;
+    this.esp = 34;
+    this.piso = windowHeight - this.margen - this.esp / 2;
+  }
 
-  if (posY > piso - rad) {
-    print("ya");
-    vel *= -1;
-    posY += vel;
+  update() {
+    this.velY += this.acel;
+    this.posY += this.velY;
+
+    if (this.posY >= this.piso - this.rad) {
+      print("ya");
+      this.posY = this.piso - this.rad;
+      this.velY *= -1;
+    }
+  }
+
+  display() {
+    noStroke();
+    fill(255);
+    circle(this.posX, this.posY, this.diam);
+
+    fill(random(0, 200), 255, 0);
+    rect(windowWidth, windowHeight - this.margen, windowWidth, this.esp);
   }
 }
