@@ -17,12 +17,12 @@ class Pelota {
   constructor() {
     this.posX = windowWidth / 2;
     this.posY = windowHeight / 2;
-    this.diam = 250;
+    this.diam = 125;
     // this.diam = random(10, 50);
     this.rad = this.diam / 2;
     // this.rad = this.diam = random(100, 500);
     this.velY = 1;
-    this.acel = 0.98;
+    this.acel = 0.2;
     this.margen = 50;
     this.esp = 34;
     this.piso = windowHeight - this.margen - this.esp / 2;
@@ -45,6 +45,6 @@ class Pelota {
     circle(this.posX, this.posY, this.diam);
 
     fill(50, 255, 0);
-    rect(0, windowHeight - this.margen, windowWidth, this.esp);
+    rect(0, windowHeight - 65, windowWidth, 100);
   }
 }
